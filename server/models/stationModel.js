@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const StationSchema = new Schema({
+const StationDataSchema = new Schema({
     elevation: Number,
     location: {lat: Number,lng: Number},
     name: String,
@@ -11,4 +11,4 @@ const StationSchema = new Schema({
     wind: Boolean
 });
 
-module.exports = mongoose.model('StationModel', StationSchema);
+module.exports = mongoose.model('StationDataModel', StationDataSchema);

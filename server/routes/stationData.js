@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const StationsModel = require('../models/StationsModel');
+const StationDataModel = require('../models/StationDataModel');
 const mongoDB = 'mongodb://localhost/Sunshine-Daydream-DB';
 
 mongoose.connect(mongoDB, { useNewUrlParser: true });
@@ -13,7 +13,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 router.get('/', function(req, res){
 
-    StationsModel.
+    StationDataModel.
     find(function(err, users){
         res.status(200).send(users);
     });
@@ -30,9 +30,9 @@ router.post('/', function(req, res) {
         Change_In_Snow_Depth_in: req.body["Change In Snow Depth (in)"],
         Air_Temperature_Observed_degF: req.body["Air Temperature Observed (degF)"]
     };
-    const newStations = new StationsModel(bodyObj);
+    const newStationData = new StationDataModel(bodyObj);
     
-    newStations
+    newStationData
     .save(function(err) { 
         if (err){
             res.status(500).send("Something went wrong while attempting to POST to the Database"); 

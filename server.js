@@ -5,7 +5,7 @@ const path = require('path');
 const http = require('http');
 const app = express();
 const cookieParser = require('cookie-parser');
-const stations = require('./server/routes/stations');
+const stationData = require('./server/routes/stationData');
 const station = require('./server/routes/station');
 //const request = require('request-promise');
 const mongoose = require('mongoose');
@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'builds')));
 
 // Routes
 app.use('/station', station);
-app.use('/stations', stations);
+app.use('/station-data', stationData);
 
 
 // Send all other requests to the React app
