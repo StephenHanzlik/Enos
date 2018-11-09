@@ -31,11 +31,9 @@ app.use(cookieParser());
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'builds')));
 
-// API location
-//app.use('/auth', auth);
+// Routes
+app.use('/station', station);
 app.use('/stations', stations);
-app.use('/step', step);
-app.use('/step-value', stepValue);
 
 
 // Send all other requests to the React app
