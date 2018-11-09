@@ -2,10 +2,18 @@
   "name": "sunshine_daydream",
   "version": "1.0.0",
   "description": "A backountry snow and weather app",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Stephen Hanzlik",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "http": "0.0.0",
+    "mongoose": "^5.3.10"
+  }
 }
