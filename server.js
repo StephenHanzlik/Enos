@@ -21,7 +21,7 @@ const mongoDB = 'mongodb://localhost/Sunshine-Daydream-DB';
 //  SNWD::delta (change in snow depth)
 //  TOBS::value (observed air temperature)
 
-//Test Data
+//Test Arguments
 //672:WA:SNTL, 2, 2018-01-01, 2018-01-30]
 
 const generateReport = function(id, days, start_date, end_date){
@@ -44,8 +44,6 @@ const generateReport = function(id, days, start_date, end_date){
 };
 //generateReport('672:WA:SNTL', '2');
 console.log("before export " + generateReport);
-module.exports = generateReport;
-console.log("module.exports: " + module.exports);
 
 //use to prevent cors issues for development
 app.use(function(req, res, next) {
@@ -84,3 +82,6 @@ app.set('port', port);
 const server = http.createServer(app);
 
 server.listen(port, () => console.log(`Running on localhost:${port}`));
+
+module.exports = "test";
+console.log("module.exports: " + module.exports);
