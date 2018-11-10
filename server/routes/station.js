@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const StationModel = require('../models/stationModel');
 const mongoDB = 'mongodb://localhost/Sunshine-Daydream-DB';
 // const requestPromise = require('request-promise');
-const generateReport = require('../../server.js');
+const buildReportRequest = require('../snotel_library/snotelLibrary');
 
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 
@@ -14,11 +14,9 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 router.get('/', function(req, res){
-    console.log("generateReport");
-    console.log(JSON.stringify(generateReport));
-    //Circular dependancies empty object in returned from require
-    //https://stackoverflow.com/questions/23875233/require-returns-an-empty-object/23875299
-    res.status(200).send(JSON.stringify(generateReport));
+    
+    buildReportRequest()
+    res.status(200).send(JSON.stringify(buildReportRequest()));
 
     // StationModel.
     // find(function(err, users){
@@ -62,8 +60,6 @@ router.get('/:id', function(req, res){
 router.get('/history/:id', function(req, res){
 
 });
-
-
 
 
 module.exports = router;
