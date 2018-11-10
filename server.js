@@ -22,15 +22,25 @@ const mongoDB = 'mongodb://localhost/Sunshine-Daydream-DB';
 //  TOBS::value (observed air temperature)
 
 //Test Data
-//672:WA:SNTL, 2, 2018-01-01, 2018-01-30
-
+//672:WA:SNTL, 2, 2018-01-01, 2018-01-30]
 
 const generateReport = function(id, days, start_date, end_date){
     const baseUrl =  "http://wcc.sc.egov.usda.gov/reportGenerator/view_csv/customSingleStationReport/daily/";
     const query = `${id}%7Cid%3D%22%22%7Cname/-${days}%2C0/WTEQ%3A%3Avalue%2CWTEQ%3A%3Adelta%2CSNWD%3A%3Avalue%2CSNWD%3A%3Adelta`;
-
+    const options =  {
+      'method': 'GET',
+      'url': baseUrl + query,
+    };
+    requestPromise(options)
+    .then(function (response) {
+      console.log('Got report!');
+    })
+    .catch(function (err) {
+      console.log(`ERROR: ${err}`);
+    });
 
 };
+module.exports = generateReport;
 
 //use to prevent cors issues for development
 app.use(function(req, res, next) {

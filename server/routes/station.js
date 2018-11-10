@@ -4,6 +4,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const StationModel = require('../models/stationModel');
 const mongoDB = 'mongodb://localhost/Sunshine-Daydream-DB';
+const generateReport = require('../../server.js');
 
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 
@@ -12,11 +13,15 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 router.get('/', function(req, res){
+    console.log("generateReport");
+    console.log(generateReport);
 
-    StationModel.
-    find(function(err, users){
-        res.status(200).send(users);
-    });
+    res.status(200).send(typeof generateReport);
+
+    // StationModel.
+    // find(function(err, users){
+    //     
+    // });
 
 });
 
@@ -24,7 +29,7 @@ router.get('/', function(req, res){
 //TODO use most recent data and greyed out text if the data point is old
 
 router.post('/', function(req, res) {
-
+ 
     const bodyObj = {
         ceId: req.body.id,
         formulaInstanceId: req.body.email,
