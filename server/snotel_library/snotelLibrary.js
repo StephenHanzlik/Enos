@@ -12,7 +12,7 @@
 
 //Test Arguments:
 //672:WA:SNTL, 2, 2018-01-01, 2018-01-30
-//generateReport('672:WA:SNTL', '2');
+//buildReportRequest('672:WA:SNTL', '2');
 
 //Watch out for circular dependancies - empty object is returned from require
 //https://stackoverflow.com/questions/23875233/require-returns-an-empty-object/23875299
@@ -25,15 +25,6 @@ const buildReportRequest = function(id, days, start_date, end_date){
       'url': baseUrl + query,
     };
     return options;
-    // requestPromise(options)
-    // .then(function (response) {
-    //   console.log('Got report!');
-    //   return response;
-    // })
-    // .catch(function (err) {
-    //   console.log(`ERROR: ${err}`);
-    //   return err;
-    // });
 };
 
 module.exports = buildReportRequest;

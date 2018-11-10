@@ -4,7 +4,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const StationModel = require('../models/stationModel');
 const mongoDB = 'mongodb://localhost/Sunshine-Daydream-DB';
-// const requestPromise = require('request-promise');
+const requestPromise = require('request-promise');
 const buildReportRequest = require('../snotel_library/snotelLibrary');
 
 mongoose.connect(mongoDB, { useNewUrlParser: true });
@@ -14,9 +14,33 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 router.get('/', function(req, res){
+
+    //options not defined.  Can I build "buildReportRequest" to take a callback function?   
+    // buildReportRequest(options=>{
+    //    requestPromise()
+    //    .then(function (response) {
+    //    console.log('Got report!');
+    //    res.status(200).send(response);
+    //     })//end then
+    //     .catch(function (err) {
+    //         console.log(`ERROR: ${err}`);
+    //         res.status(500).send(err)
+    //       });//end catch
+    // })//end ideal call back implementation of buildReportRequest
+    // buildReportRequest()
+
+    const options = buildReportRequest('672:WA:SNTL', '2');
+    requestPromise(options)
+    .then(function (response) {
+      console.log('Got report!');
+      res.status(200).send(response);
+    })
+    .catch(function (err) {
+      console.log(`ERROR: ${err}`);
+      res.status(500).send(err)
+    });
     
-    buildReportRequest()
-    res.status(200).send(JSON.stringify(buildReportRequest()));
+    // res.status(200).send();
 
     // StationModel.
     // find(function(err, users){

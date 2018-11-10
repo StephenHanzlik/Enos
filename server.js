@@ -7,7 +7,7 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const stationData = require('./server/routes/stationData');
 const station = require('./server/routes/station');
-const requestPromise = require('request-promise');
+//const requestPromise = require('request-promise');
 const mongoose = require('mongoose');
 const mongoDB = 'mongodb://localhost/Sunshine-Daydream-DB';
 
