@@ -20,6 +20,9 @@ router.get('/', function(req, res){
 
 });
 
+//TODO  wind direction and speed gauges
+//TODO use most recent data and greyed out text if the data point is old
+
 router.post('/', function(req, res) {
 
     const bodyObj = {
@@ -42,5 +45,18 @@ router.post('/', function(req, res) {
     });
 
 });
+
+router.get('/:id', function(req, res){
+//click on station on map and see current data most recent data.
+
+        res.status(200).send(users);
+});
+
+router.get('/history/:id', function(req, res){
+
+});
+
+
+
 
 module.exports = router;
