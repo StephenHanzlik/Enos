@@ -7,7 +7,7 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const stationData = require('./server/routes/stationData');
 const station = require('./server/routes/station');
-const request = require('request-promise');
+const requestPromise = require('request-promise');
 const mongoose = require('mongoose');
 const mongoDB = 'mongodb://localhost/Sunshine-Daydream-DB';
 
@@ -34,13 +34,18 @@ const generateReport = function(id, days, start_date, end_date){
     requestPromise(options)
     .then(function (response) {
       console.log('Got report!');
+      return response;
     })
     .catch(function (err) {
       console.log(`ERROR: ${err}`);
+      return err;
     });
 
 };
+//generateReport('672:WA:SNTL', '2');
+console.log("before export " + generateReport);
 module.exports = generateReport;
+console.log("module.exports: " + module.exports);
 
 //use to prevent cors issues for development
 app.use(function(req, res, next) {

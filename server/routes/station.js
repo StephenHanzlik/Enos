@@ -14,9 +14,9 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 router.get('/', function(req, res){
     console.log("generateReport");
-    console.log(generateReport);
+    console.log(JSON.stringify(generateReport));
 
-    res.status(200).send(typeof generateReport);
+    res.status(200).send(JSON.stringify(generateReport));
 
     // StationModel.
     // find(function(err, users){
