@@ -25,44 +25,18 @@ router.get('/', function(req, res){
        console.log(`ERROR: ${err}`);
        res.status(500).send(`ERROR: ${err}`);
       }); 
-   
-
-
-    //A1
-    // const options = buildReportRequest('672:WA:SNTL', '2');
-    // requestPromise(options)
-    // .then(function (response) {
-    //   console.log('Got report!');
-    //   res.status(200).send(response);
-    // })
-    // .catch(function (err) {
-    //   console.log(`ERROR: ${err}`);
-    //   res.status(500).send(err)
-    // });
-    
-    // res.status(200).send();
-
-    // StationModel.
-    // find(function(err, users){
-        
-    // });
 
 });
 
 //TODO  wind direction and speed gauges
 //TODO use most recent data and greyed out text if the data point is old
 
+//use this route to update stations.  Stations currently come from a hardcoded list found here:
+//https://github.com/bobbymarko/powderlines-api/blob/master/config/stations.yml
 router.post('/', function(req, res) {
- 
-    const bodyObj = {
-        ceId: req.body.id,
-        formulaInstanceId: req.body.email,
-        status: req.body.status,
-        createdDate: req.body.createdDate,
-        updatedDate: req.body.updatedDate,
-        elementInstanceId: req.body.elementInstanceId
-    };
-    const newStation = new StationModel(bodyObj);
+
+    //const bodyObj = SNOTEL.buildObjectForDB(req.body, "station");
+    const newStation = new StationModel(req.body);
     
     newStation
     .save(function(err) { 

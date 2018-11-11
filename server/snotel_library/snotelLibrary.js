@@ -46,7 +46,32 @@ const buildJSONObject = function(arrayOfValues, objType){
      case "station":
        return objToReturn = {
          "elevation": "string",
-         "location": {"lat":"string","lng":"string"},
+         "location": {"lat":"number","lng":"number"},
+         "name":"string",
+         "timezone":"string",
+         "triplet":"string",
+         "wind":"boolean"
+     }
+     case "stationData":
+        return objToReturn = { 
+          "Date": arrayOfValues[0],
+          "Snow Water Equivalent (in) Start of Day Values": arrayOfValues[1],
+          "Change In Snow Water Equivalent (in)": arrayOfValues[2],
+          "Snow Depth (in) Start of Day Values": arrayOfValues[3],
+          "Change In Snow Depth (in)": arrayOfValues[4]
+    }
+     default:
+      break;
+  }
+}
+
+const buildObjectForDB = function(requestBody, objType){
+  let objToReturn;
+  switch (objType) {
+     case "station":
+       return objToReturn = {
+         "elevation": requestBody,
+         "location": {"lat":"number","lng":"number"},
          "name":"string",
          "timezone":"string",
          "triplet":"string",
@@ -69,3 +94,4 @@ module.exports.buildReportRequest = buildReportRequest;
 module.exports.getReports = getReports;
 module.exports.convertCSVtoJSON = convertCSVtoJSON;
 module.exports.buildJSONObject = buildJSONObject;
+module.exports.buildObjectForDB = buildObjectForDB;

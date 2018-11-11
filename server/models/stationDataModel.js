@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const StationsSchema = new Schema({
+const StationDataSchema = new Schema({
     Date: String,
     Snow_Water_Equivalent_in: String,
     Change_In_Snow_Water_Equivalent_in: String,
@@ -11,4 +11,4 @@ const StationsSchema = new Schema({
     Air_Temperature_Observed_degF: String
 });
 
-module.exports = mongoose.model('StationsModel', StationsSchema);
+module.exports = mongoose.model('StationDataModel', StationDataSchema);
