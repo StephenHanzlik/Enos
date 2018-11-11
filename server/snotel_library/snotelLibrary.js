@@ -37,11 +37,17 @@ const getReports = function(options){
 const convertCSVtoJSON = function(csvString){
   const linesArray = CSV.parse(csvString);
   const filteredLinesArray = linesArray.filter(line=>line[0].indexOf('#')<0);
-  console.log(filteredLinesArray);
-  // let jsonBody = {};
-  // filteredLinesArray[0].forEach(header=>{
-  //   jsonBody[header] = 
-  // });
+  // console.log(filteredLinesArray);
+  const headersArray = filteredLinesArray[0][0].split(',');
+  let json = {};
+
+  headersArray.forEach(header=>{
+    json[header] = "value";
+  });
+
+  console.log(json);
+
+  
   // const str = CSV.stringify(filteredLinesArray);
   // console.log(str[0]);
 }
