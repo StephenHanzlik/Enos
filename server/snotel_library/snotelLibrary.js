@@ -35,19 +35,30 @@ const getReports = function(options){
 }
 
 const convertCSVtoJSON = function(csvString){
-  const linesArray = CSV.parse(csvString);
-  const filteredLinesArray = linesArray.filter(line=>line[0].indexOf('#')<0);
-  // console.log(filteredLinesArray);
-  const headersArray = filteredLinesArray[0][0].split(',');
-  let json = {};
-
+  const headersArray = CSV.parse(csvString).filter(line=>line[0].indexOf('#')<0)[0][0].split(',');
+  // let dataObj = { 
+  //     'Date': 'value',
+  //     'Snow Water Equivalent (in) Start of Day Values': 'value',
+  //     'Change In Snow Water Equivalent (in)': 'value',
+  //     'Snow Depth (in) Start of Day Values': 'value',
+  //     'Change In Snow Depth (in)': 'value'
+  // };
   headersArray.forEach(header=>{
     json[header] = "value";
   });
 
   console.log(json);
 
-  
+  //****************************************************************************************************/
+  //  const headersArray = CSV.parse(csvString).filter(line=>line[0].indexOf('#')<0)[0][0].split(',');
+  //
+  //  or
+  //
+  // const linesArray = CSV.parse(csvString);
+  // const filteredLinesArray = linesArray.filter(line=>line[0].indexOf('#')<0);
+  // const headersArray = filteredLinesArray[0][0].split(',');
+  //****************************************************************************************************/
+
   // const str = CSV.stringify(filteredLinesArray);
   // console.log(str[0]);
 }
