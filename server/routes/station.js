@@ -18,8 +18,8 @@ router.get('/', function(req, res){
 
     SNOTEL.getReports(reportRequest)    
     .then(function (reportCSV) {
-        SNOTEL.convertCSVtoJSON(reportCSV)
-        res.status(200).send('reportCSV');   
+        const reportJSON = SNOTEL.convertCSVtoJSON(reportCSV, "stationData")
+        res.status(200).send(reportJSON);   
       })
       .catch(function (err) {
        console.log(`ERROR: ${err}`);
