@@ -14,17 +14,18 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 router.get('/', function(req, res){
 
+    //this should be in station data
     const reportRequest = SNOTEL.buildReportRequest('672:WA:SNTL', '2');
 
     SNOTEL.getReports(reportRequest)    
     .then(function (reportCSV) {
         const reportJSON = SNOTEL.convertCSVtoJSON(reportCSV, "stationData")
         res.status(200).send(reportJSON);   
-      })
-      .catch(function (err) {
-       console.log(`ERROR: ${err}`);
+    })
+    .catch(function (err) {
+        console.log(`ERROR: ${err}`);
        res.status(500).send(`ERROR: ${err}`);
-      }); 
+    }); 
 
 });
 
@@ -35,7 +36,6 @@ router.get('/', function(req, res){
 //https://github.com/bobbymarko/powderlines-api/blob/master/config/stations.yml
 router.post('/', function(req, res) {
 
-    //const bodyObj = SNOTEL.buildObjectForDB(req.body, "station");
     const newStation = new StationModel(req.body);
     
     newStation
@@ -50,14 +50,15 @@ router.post('/', function(req, res) {
 });
 
 router.get('/:id', function(req, res){
-//click on station on map and see current data most recent data.
-
+//click on station on map and see current data most recent data. This works, should be the GET '/' route.
+    StationModel.
+    find(function(err, users){
         res.status(200).send(users);
+    });
 });
 
 router.get('/history/:id', function(req, res){
 
 });
-
 
 module.exports = router;
