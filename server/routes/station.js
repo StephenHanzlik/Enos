@@ -4,8 +4,6 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const StationModel = require('../models/stationModel');
 const mongoDB = 'mongodb://localhost/Sunshine-Daydream-DB';
-//const requestPromise = require('request-promise');
-//const buildReportRequest = require('../snotel_library/snotelLibrary');
 const SNOTEL = require('../snotel_library/snotelLibrary');
 
 mongoose.connect(mongoDB, { useNewUrlParser: true });
@@ -20,13 +18,14 @@ router.get('/', function(req, res){
 
     SNOTEL.getReports(reportRequest)    
     .then(function (reportCSV) {
-
-        res.status(200).send(reportCSV);   
+        SNOTEL.convertCSVtoJSON(reportCSV)
+        res.status(200).send('reportCSV');   
       })
       .catch(function (err) {
        console.log(`ERROR: ${err}`);
        res.status(500).send(`ERROR: ${err}`);
       }); 
+   
 
 
     //A1
