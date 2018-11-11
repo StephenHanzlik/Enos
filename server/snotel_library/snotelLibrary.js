@@ -41,7 +41,7 @@ const convertCSVtoJSON = function(csvString, dataTypeFlag){
 }
 
 const buildJSONObject = function(arrayOfValues, objType){
-  let objToReturn = {};
+  let objToReturn;
   switch (objType) {
      case "station":
        return objToReturn = {
@@ -53,12 +53,12 @@ const buildJSONObject = function(arrayOfValues, objType){
          "wind":"boolean"
      }
      case "stationData":
-      return objToReturn = { 
-        "Date": arrayOfValues[0],
-        "Snow Water Equivalent (in) Start of Day Values": arrayOfValues[1],
-        "Change In Snow Water Equivalent (in)": arrayOfValues[2],
-        "Snow Depth (in) Start of Day Values": arrayOfValues[3],
-        "Change In Snow Depth (in)": arrayOfValues[4]
+        return objToReturn = { 
+          "Date": arrayOfValues[0],
+          "Snow Water Equivalent (in) Start of Day Values": arrayOfValues[1],
+          "Change In Snow Water Equivalent (in)": arrayOfValues[2],
+          "Snow Depth (in) Start of Day Values": arrayOfValues[3],
+          "Change In Snow Depth (in)": arrayOfValues[4]
     }
      default:
       break;
