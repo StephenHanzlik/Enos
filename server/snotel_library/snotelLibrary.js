@@ -36,15 +36,14 @@ const getReports = function(options){
 
 const convertCSVtoJSON = function(csvString){
   const linesArray = CSV.parse(csvString);
-  let filteredLinesArray = linesArray.filter(line =>{
-    console.log(line);
-    console.log(line[0].indexOf('#'));
-    console.log(line[0].indexOf('#')<0);
-    console.log("*****")
-  });
-  console.log("filteredLinesArray: " + filteredLinesArray);
-  //const str = CSV.stringify(arr);
-  //console.log("I AM STR ****: " + str);
+  const filteredLinesArray = linesArray.filter(line=>line[0].indexOf('#')<0);
+  console.log(filteredLinesArray);
+  // let jsonBody = {};
+  // filteredLinesArray[0].forEach(header=>{
+  //   jsonBody[header] = 
+  // });
+  // const str = CSV.stringify(filteredLinesArray);
+  // console.log(str[0]);
 }
 
 module.exports.buildReportRequest = buildReportRequest;
