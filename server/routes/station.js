@@ -13,24 +13,31 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 router.get('/', function(req, res){
-
-    //this should be in station data
-    const reportRequest = SNOTEL.buildReportRequest('672:WA:SNTL', '2');
-
-    SNOTEL.getReports(reportRequest)    
-    .then(function (reportCSV) {
-        const reportJSON = SNOTEL.convertCSVtoJSON(reportCSV, "stationData")
-        res.status(200).send(reportJSON);   
-    })
-    .catch(function (err) {
-        console.log(`ERROR: ${err}`);
-       res.status(500).send(`ERROR: ${err}`);
-    }); 
-
+    //Get all stations from our DB
+    StationModel.
+    find(function(err, users){
+        res.status(200).send(users);
+    });
 });
 
-//TODO  wind direction and speed gauges
-//TODO use most recent data and greyed out text if the data point is old
+router.get('/:id', function(req, res){
+    //get one station from our DB
+    StationModel.
+    find().
+    where('triplet').
+    equals(req.params.id).
+    exec(function(err, station) {
+        if (err) {
+             res.status(500).send(err);
+         }else{
+            res.status(200).send(station);
+        }
+    })
+});
+    
+router.get('/history/:id', function(req, res){
+    
+});
 
 //use this route to update stations.  Stations currently come from a hardcoded list found here:
 //https://github.com/bobbymarko/powderlines-api/blob/master/config/stations.yml
@@ -46,18 +53,6 @@ router.post('/', function(req, res) {
             res.status(200).send("POST Succesful");
         }
     });
-
-});
-
-router.get('/:id', function(req, res){
-//click on station on map and see current data most recent data. This works, should be the GET '/' route.
-    StationModel.
-    find(function(err, users){
-        res.status(200).send(users);
-    });
-});
-
-router.get('/history/:id', function(req, res){
 
 });
 

@@ -4,6 +4,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const StationDataModel = require('../models/StationDataModel');
 const mongoDB = 'mongodb://localhost/Sunshine-Daydream-DB';
+const SNOTEL = require('../snotel_library/snotelLibrary');
 
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 
@@ -12,13 +13,20 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 router.get('/', function(req, res){
-
-    StationDataModel.
-    find(function(err, users){
-        res.status(200).send(users);
-    });
+    const reportRequest = SNOTEL.buildReportRequest('672:WA:SNTL', '2');
+    console.log("reportRequest from station data:  " + reportRequest);
+    SNOTEL.getReports(reportRequest)    
+    .then(function (reportCSV) {
+        const reportJSON = SNOTEL.convertCSVtoJSON(reportCSV, "stationData")
+        res.status(200).send(reportJSON);   
+    })
+    .catch(function (err) {
+        console.log(`ERROR: ${err}`);
+        res.status(500).send(`ERROR: ${err}`);
+    }); 
 
 });
+
 
 router.post('/', function(req, res) {
 
