@@ -35,11 +35,11 @@ router.get('/:id', function(req, res){
     })
 });
 
-//**********************************************************************************************/
-//Use this route to update stations.  Stations currently come from a hardcoded list found here:
-//https://github.com/bobbymarko/powderlines-api/blob/master/config/stations.yml
-//POST is commented out until I can get auth in place w/ admin privelages
-//**********************************************************************************************/
+//**********************************************************************************************
+// Use this route to update stations.  Stations currently come from a hardcoded list found here:
+// https://github.com/bobbymarko/powderlines-api/blob/master/config/stations.yml
+// POST is commented out until I can get auth in place w/ admin privelages
+//**********************************************************************************************
 
 // router.post('/', function(req, res) {
 //

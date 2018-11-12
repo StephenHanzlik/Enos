@@ -11,9 +11,9 @@ const CSV = require('csv-string');
 //  SNWD::delta (change in snow depth)
 //  TOBS::value (observed air temperature)
 
-//Test Arguments:
-//672:WA:SNTL, 2, 2018-01-01, 2018-01-30
-//buildReportRequest('672:WA:SNTL', '2');
+// Test Arguments:
+// 672:WA:SNTL, 2, 2018-01-01, 2018-01-30
+// buildReportRequest('672:WA:SNTL', '2');
 
 const buildReportRequest = function(id, days, start_date, end_date){
     const baseUrl =  "http://wcc.sc.egov.usda.gov/reportGenerator/view_csv/customSingleStationReport/daily/";
