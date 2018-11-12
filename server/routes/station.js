@@ -34,26 +34,26 @@ router.get('/:id', function(req, res){
         }
     })
 });
-    
-router.get('/history/:id', function(req, res){
-    
-});
 
-//use this route to update stations.  Stations currently come from a hardcoded list found here:
+//**********************************************************************************************/
+//Use this route to update stations.  Stations currently come from a hardcoded list found here:
 //https://github.com/bobbymarko/powderlines-api/blob/master/config/stations.yml
-router.post('/', function(req, res) {
+//POST is commented out until I can get auth in place w/ admin privelages
+//**********************************************************************************************/
 
-    const newStation = new StationModel(req.body);
-    
-    newStation
-    .save(function(err) { 
-        if (err){
-            res.status(500).send("Something went wrong while attempting to POST to the Database"); 
-        } else{
-            res.status(200).send("POST Succesful");
-        }
-    });
-
-});
+// router.post('/', function(req, res) {
+//
+//     const newStation = new StationModel(req.body);
+//  
+//     newStation
+//     .save(function(err) { 
+//         if (err){
+//             res.status(500).send("Something went wrong while attempting to POST to the Database"); 
+//         } else{
+//             res.status(200).send("POST Succesful");
+//         }
+//     });
+//
+// });
 
 module.exports = router;
