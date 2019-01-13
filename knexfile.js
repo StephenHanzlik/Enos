@@ -1,9 +1,9 @@
 module.exports = {
 
     development: {
-      client: 'sunshinedaydream',
+      client: 'postgresql',
       connection: {
         database: 'sunshinedaydream'
       }
     }
-  }
+}
