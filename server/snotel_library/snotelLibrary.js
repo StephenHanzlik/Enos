@@ -34,7 +34,7 @@ const convertCSVtoJSON = function(csvString, dataTypeFlag){
   let dataArray = CSV.parse(csvString).filter(line=>line[0].indexOf('#')<0);
   dataArray.shift();
   dataArray.forEach(lineArray => {
-    lineArray = lineArray[0].split(',')
+    lineArray = lineArray[0].split(',');
     json.push(buildJSONObject(lineArray, dataTypeFlag));
   });
   return json;
