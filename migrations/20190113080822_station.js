@@ -16,18 +16,19 @@ exports.up = function(knex, Promise) {
         knex.schema.createTable('station', function(table){
             table.increments('sid').primary();
             table.integer('elevation');
-            table.integer('location');
+            table.integer('latitude');
+            table.integer('longitude');
             table.string('name');
             table.integer('timezone');
             table.string('triplet');
             table.boolean('wind');
         }),
 
-        knex.schema.createTable('location', function(table){
-            table.increments('lid').primary();
-            table.integer('lat');
-            table.integer('lng');
-        })
+        // knex.schema.createTable('location', function(table){
+        //     table.increments('lid').primary();
+        //     table.integer('lat');
+        //     table.integer('lng');
+        // })
 
 
     ])
@@ -35,5 +36,8 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  
+    return Promise.all([
+        knex.schema.dropTable('stationData'),
+        knex.schema.dropTable('station')
+    ])
 };
