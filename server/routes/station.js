@@ -3,14 +3,14 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const StationModel = require('../models/stationModel');
-const mongoDB = 'mongodb://localhost/Sunshine-Daydream-DB';
+// const mongoDB = 'mongodb://localhost/Sunshine-Daydream-DB';
 const SNOTEL = require('../snotel_library/snotelLibrary');
 
-mongoose.connect(mongoDB, { useNewUrlParser: true });
+// mongoose.connect(mongoDB, { useNewUrlParser: true });
 
-mongoose.Promise = global.Promise;
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+// mongoose.Promise = global.Promise;
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 router.get('/', function(req, res){
     //Get all stations from our DB

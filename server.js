@@ -7,8 +7,10 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const stationData = require('./server/routes/stationData');
 const station = require('./server/routes/station');
-const mongoose = require('mongoose');
-const mongoDB = 'mongodb://localhost/Sunshine-Daydream-DB';
+// const mongoose = require('mongoose');
+// const mongoDB = 'mongodb://localhost/Sunshine-Daydream-DB';
+const db  = require('./db');
+
 
 //use to prevent cors issues for development
 app.use(function(req, res, next) {
@@ -17,11 +19,11 @@ app.use(function(req, res, next) {
   next();
 });
 
-mongoose.connect(mongoDB, { useNewUrlParser: true });
+// mongoose.connect(mongoDB, { useNewUrlParser: true });
 
-mongoose.Promise = global.Promise;
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+// mongoose.Promise = global.Promise;
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
