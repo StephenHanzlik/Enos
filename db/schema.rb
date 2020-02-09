@@ -20,9 +20,11 @@ ActiveRecord::Schema.define(version: 2019_12_28_212159) do
     t.decimal "Snow_Water_Equivalent_in"
     t.decimal "Change_In_Snow_Water_Equivalent_in"
     t.decimal "Change_In_Snow_Depth_in"
+    t.decimal "Snow_Depth_In"
     t.decimal "Air_Temperature_Observed_degF"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "station_id"
   end
 
   create_table "stations", force: :cascade do |t|
@@ -30,10 +32,10 @@ ActiveRecord::Schema.define(version: 2019_12_28_212159) do
     t.string "location"
     t.string "name"
     t.decimal "timezone"
-    t.string "tiplet"
     t.boolean "wind"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "triplet"
   end
 
 end
